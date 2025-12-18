@@ -13,6 +13,7 @@ TensorRT-LLM version: 1.2.0rc5
 
 export MODEL_HANDLE="nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-FP8"
 
+```
 docker run --name trtllm_llm_server --rm -it --gpus all --ipc host --network host   -e HF_TOKEN=$HF_TOKEN   -e MODEL_HANDLE="$MODEL_HANDLE"   -v $HOME/.cache/huggingface/:/root/.cache/huggingface/   nvcr.io/nvidia/tensorrt-llm/release:1.2.0rc5  bash -c '
     hf download $MODEL_HANDLE && \
     cat > nano_v3.yaml<<EOF
@@ -64,3 +65,4 @@ transforms:
     enabled: true
 EOF
  '
+ ```
