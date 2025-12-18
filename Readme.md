@@ -1,3 +1,7 @@
+TensorRT-LLM on DGX Spark Sparks NVIDIA-Nemotron-3-Nano-30B-A3B-FP8
+
+https://github.com/NVIDIA-NeMo/Nemotron/blob/main/usage-cookbook/Nemotron-3-Nano/trtllm_cookbook.ipynb
+
 docker run --rm -it --gpus=all nvcr.io/nvidia/tensorrt-llm/release:1.2.0rc5 nvidia-smi
 
 docker run --rm -it --gpus all \
