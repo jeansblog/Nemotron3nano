@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  trtllm_llm_server:
+    # ユーザーが提供したDockerfileを使用してビルド
+    build:
+      context: . # Dockerfileがあるディレクトリを指定 (通常はカレントディレクトリ)
+      dockerfile: Dockerfile
+    
+    # コンテナ名を設定
+    container_name: trtllm_llm_server3
+    
+    # 実行環境の設定
+    restart: "no" # エラーで停止した場合に再起動しない設定 (必要に応じて 'always' に変更可)
+    ipc: host # 共有メモリの設定 (通常、LLMで必要)
+    network_mode: host # ホストのネットワークを使用 (ポート8355をホストに直接公開)
+
+    # GPUを使用するための設定 (NVIDIA Container Toolkitが必要)
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all # すべてのGPUを使用
+              capabilities: [gpu]
+
+    # 環境変数の設定
+    environment:
+      # ホストの HF_TOKEN をコンテナに渡す
+      - HF_TOKEN=${HF_TOKEN} 
+      # サービス提供するモデルを設定
+      - MODEL_HANDLE=nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-FP8
+
+    # ボリュームの設定
+    volumes:
+      # Hugging Face キャッシュを永続化し、ホストと共有
+      # モデルダウンロードの再実行を防ぐために重要
+      - $HOME/.cache/huggingface/:/root/.cache/huggingface/
+
+    # 注: network_mode: host を使用しているため、portsセクションは不要ですが、
+    # サービスがリッスンしていることを明示するためにコメントで残します。
+    # ports:
+    #   - "8355:8355"
