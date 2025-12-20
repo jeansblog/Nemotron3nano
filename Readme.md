@@ -154,3 +154,4 @@ INFO:     Uvicorn running on http://0.0.0.0:8355 (Press CTRL+C to quit)
   ```
 
 ![](nvtop.PNG)
+![](OpenWebUI.PNG)

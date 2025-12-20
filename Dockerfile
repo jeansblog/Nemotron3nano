@@ -14,7 +14,8 @@ RUN chmod +x /usr/local/bin/setup_and_run.sh
 #RUN pip install --upgrade "nvidia-modelopt[hf]" --break-system-packages
 
 RUN pip install torch openai
-
+#RUN pip uninstall pynvml
+RUN pip install nvidia-ml-py
 
 # コンテナが起動したときに実行されるコマンド (CMD は docker-compose.yaml で上書きされる可能性あり)
 # ENTRYPOINT を使用して、スクリプトを実行。これにより実行引数の処理が容易になる。
