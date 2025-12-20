@@ -30,7 +30,7 @@ services:
       - HF_TOKEN=${HF_TOKEN} 
       # サービス提供するモデルを設定
       - MODEL_HANDLE=nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-FP8
-
+      #- MODEL_HANDLE=nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16
     # ボリュームの設定
     volumes:
       # Hugging Face キャッシュを永続化し、ホストと共有
